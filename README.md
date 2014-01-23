@@ -1,7 +1,7 @@
 <h1>WorkDay Scheduler</h1>
-<h3>Work hard, Let us handle the trivial things</h3>
-A Cloud based HRM service.
-..* Solves these basic issues:
+<h3>Work hard, Let us handle the trivial things.</h3>
+<h5>A Cloud based HRM service.</h5>
+* Solves these basic issues:
 
 1. Synchronized Vacation Scheduling.
 2. Efficient Overtime distribution.

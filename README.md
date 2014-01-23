@@ -1,16 +1,10 @@
-# Ruby on Rails Tutorial: sample application
+<h1>WorkDay Scheduler</h1>
+<h3>Work hard, Let us handle the trivial things</h3>
+A Cloud based HRM service.
 
-This is the sample application for
-[*Ruby on Rails Tutorial: Learn Web Development with Rails*](http://railstutorial.org/)
-by [Michael Hartl](http://michaelhartl.com/). You can use this reference implementation to help track down errors if you end up having trouble with code in the tutorial. In particular, as a first debugging check I suggest getting the test suite to pass on your local machine:
+Solves these basic issues:
 
-    $ cd /tmp
-    $ git clone https://github.com/railstutorial/sample_app_rails_4.git
-    $ cd sample_app_rails_4
-    $ cp config/database.yml.example config/database.yml
-    $ bundle install
-    $ bundle exec rake db:migrate
-    $ bundle exec rake db:test:prepare
-    $ bundle exec rspec spec/
+*Synchronized Vacation Scheduling.
+*Efficient Overtime distribution.
+*Dedicated and hierachically encapsulated employee notification center.
 
-If the tests don't pass, it means there may be something wrong with your system. If they do pass, then you can debug your code by comparing it with the reference implementation.

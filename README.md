@@ -3,8 +3,9 @@
 A Cloud based HRM service.
 
 Solves these basic issues:
-*Synchronized Vacation Scheduling.
-*Efficient Overtime distribution.
-*Dedicated and hierachically encapsulated employee notification center.
+
+1.Synchronized Vacation Scheduling.
+2.Efficient Overtime distribution.
+3.Dedicated and hierachically encapsulated employee notification center.
 
 

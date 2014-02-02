@@ -8,6 +8,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'event-calendar', :require => 'event_calendar'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -27,10 +28,10 @@ group :test do
   gem 'database_cleaner'
 
   # Uncomment this line on OS X.
-  gem 'growl', '1.0.3'
+  #gem 'growl', '1.0.3'
 
   # Uncomment these lines on Linux.
-  # gem 'libnotify', '0.8.0'
+   gem 'libnotify', '0.8.0'
 
   # Uncomment these lines on Windows.
   # gem 'rb-notifu', '0.0.4'

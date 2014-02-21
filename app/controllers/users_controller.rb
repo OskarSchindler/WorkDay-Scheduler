@@ -23,6 +23,17 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = "Welcome to WorkDay Scheduler"
       redirect_to @user
+	
+	User.find_in_batches do |group|
+        group.each do |user|
+          if(current_user.designation >= user.designation && current_user!=user)
+            current_user.follow!(user)
+          end
+          if(current_user.designation <= user.designation && current_user!=user)
+            user.follow!(current_user)
+          end
+       end
+    end
     else
       render 'new'
     end

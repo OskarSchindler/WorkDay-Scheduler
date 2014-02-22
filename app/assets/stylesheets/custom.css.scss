@@ -148,7 +148,7 @@ aside {
 
 .stats {
   overflow: auto;
-  a {
+  p {
     float: left;
     padding: 0 10px;
     border-left: 1px solid $grayLighter;
@@ -159,7 +159,7 @@ aside {
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color: $black;
     }
   }
   strong {

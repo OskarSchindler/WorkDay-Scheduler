@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to WorkDay Scheduler"
-      redirect_to @user
+      redirect_to(root_url)
 	
 	User.find_in_batches do |group|
         group.each do |user|

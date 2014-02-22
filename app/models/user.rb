@@ -39,7 +39,16 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
-  end
+  end 
+ 
+  def incr_workhour
+      User.find_in_batches do |group|
+        group.each do |user|	
+	user.workhour=8
+       end
+    end
+ end
+
 
   private
 

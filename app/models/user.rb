@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   def incr_workhour
       User.find_in_batches do |group|
         group.each do |user|	
-	user.workhour=8
+	user.workhour = user.workhour + 8
        end
     end
  end

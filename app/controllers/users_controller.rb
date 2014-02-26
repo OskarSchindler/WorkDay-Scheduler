@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to WorkDay Scheduler"
+      flash[:success] = "Welcome to Workday Scheduler"
       redirect_to(root_url)
 	
 	User.find_in_batches do |group|

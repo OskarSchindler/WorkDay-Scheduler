@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   before_save { self.email = email.downcase }
-  before_save { self.workhour = 0}
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
@@ -40,15 +39,6 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
   end 
- 
-  def incr_workhour
-      User.find_in_batches do |group|
-        group.each do |user|	
-	user.workhour = user.workhour + 8
-       end
-    end
- end
-
 
   private
 

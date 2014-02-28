@@ -3,7 +3,9 @@ class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def create
-    @micropost = current_user.microposts.build(micropost_params)
+	@micropost = current_user.microposts.build(micropost_params)
+	User.update_all("leave = 1" , :id => current_user )
+	
     if @micropost.save
       flash[:success] = "Action Performed!"
       redirect_to root_url

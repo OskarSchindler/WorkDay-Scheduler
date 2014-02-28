@@ -1,6 +1,6 @@
-set :environment,"production"
+set :environment,"development"
 
-every :day,:at => "2:00pm" do
+every 5.minutes do
   rake "db:updatewh"
 end
 

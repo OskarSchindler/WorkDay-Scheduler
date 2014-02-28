@@ -1,13 +1,15 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "New Action..." %>
-  </div>
+<div style="display:none;">
+<%= f.text_area :content, :value => "Took a leave..." %>
+</div>
 
-<%= f.submit "Apply for Leave", class: "btn btn-primary" %>
-
-<%= f.submit "Accept Overtime", class: "btn btn-primary" %>
-
-
-
+<% if current_user.leave != 1 %>
+<%= f.submit "Take a Leave", class: "btn btn-primary" , data: { disable_with: 'Processing' }%>
+<% else %>
+Applied for leave...
 <% end %>
+<% end %>
+
+
+

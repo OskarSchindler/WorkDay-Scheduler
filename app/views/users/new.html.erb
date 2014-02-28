@@ -13,7 +13,7 @@
       <%= f.text_field :email %>
 
       <%= f.label :designation %>
-      <%= f.select :designation,options_for_select([ "Project Leader" , "Developer" , "Tester" ], "Developer") %>
+      <%= f.select :designation, options_for_select([['Project Leader', 2], ['Developer', 1], ['Tester', 1]]) %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>

@@ -1,15 +1,24 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
 <div style="display:none;">
 <%= f.text_area :content, :value => "Took a leave..." %>
+<%= f.text_area :trigger, :value => 1 %>
 </div>
 
-<% if current_user.leave != 1 %>
-<%= f.submit "Take a Leave", class: "btn btn-primary" , data: { disable_with: 'Processing' }%>
-<% else %>
+
+<% if current_user.leave == 0 %>
+<%= f.submit "Take a Leave", class: "btn btn-primary" , data: { disable_with: 'Processing' } %>
+<% end %>
+
+<% if current_user.leave == 1 %>
 Applied for leave...
 <% end %>
+
+<% if current_user.leave == 2 %>
+Overtime Accepted...
 <% end %>
 
 
 
+<% end %>

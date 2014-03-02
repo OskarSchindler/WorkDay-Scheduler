@@ -9,4 +9,5 @@ end
   def incr_workhour
 	User.update_all("workhour = workhour + 8" , " leave == 0 " )
 	User.update_all("leave = 0")
+	Overtime.update_all("ot = 0")
   end

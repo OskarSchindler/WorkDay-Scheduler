@@ -18,20 +18,32 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params) 
-    @user.workhour = 0
+    @user = User.new(user_params)
     @user.leave = 0
+    @user.workhour = 0
+    @user.visible = 0
+
+    cntr = 0
+
+    for i in ["1","2","3"] do
+	cntr = cntr + 1
+	if @user.designation == i
+	@user.designation_id = cntr
+	end
+    end
+	
+    
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Workday Scheduler"
+      flash[:success] = "Welcome to WorkDay Scheduler"
       redirect_to(root_url)
 	
 	User.find_in_batches do |group|
         group.each do |user|
-          if(current_user.designation >= user.designation && current_user!=user)
+          if(current_user.designation_id <= user.designation_id && current_user!=user)
             current_user.follow!(user)
           end
-          if(current_user.designation <= user.designation && current_user!=user)
+          if(current_user.designation_id >= user.designation_id && current_user!=user)
             user.follow!(current_user)
           end
        end
@@ -45,6 +57,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    cntr = 0
+
+    for i in ["1","2","3"] do
+	cntr = cntr + 1
+	if @user.designation == i
+	@user.designation_id = cntr
+	end
+    end
+
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user

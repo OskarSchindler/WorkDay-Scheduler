@@ -1,0 +1,15 @@
+<%= form_for(@micropost) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+Overtime Units Available
+
+<div style="display:none;">
+<%= f.text_area :content, :value => "Accepted Overtime..." %>
+<%= f.text_area :trigger, :value => 0 %>
+</div>
+<br><br>
+<%= f.submit "Accept", class: "btn btn-primary" , data: { disable_with: 'Processing' } %>
+
+<%= f.submit "Reject", class: "btn btn-primary" , data: { disable_with: 'Processing' } %>
+
+<% end %>

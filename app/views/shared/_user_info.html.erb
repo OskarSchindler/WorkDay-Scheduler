@@ -5,8 +5,16 @@
   <%= current_user.name %>
 </h1>
 <span>
-  <%= current_user.designation %>
+  <% if current_user.designation == "1" %>
+	Project Leader
+<% else if current_user.designation == "2" %>
+	Developer
+<% else %>
+	Tester
+<% end %>
+<%end%>
 </span>
+
 <span>
   <%= link_to "My profile", current_user %>
 </span>

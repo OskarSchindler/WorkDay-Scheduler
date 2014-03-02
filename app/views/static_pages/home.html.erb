@@ -5,6 +5,12 @@
         <%= render 'shared/user_info' %>
       </section>
       
+     <% if current_user.visible == 1 %>
+	<section>
+        <%= render 'shared/overtime_form' %>
+        </section>
+      <%end%>
+
        <section>
         <%= render 'shared/indicator' %>
       </section>
@@ -12,6 +18,7 @@
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
+
     
      </aside>
     <div class="span8">

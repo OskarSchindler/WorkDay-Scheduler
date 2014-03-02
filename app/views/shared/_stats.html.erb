@@ -4,7 +4,14 @@
  <p>
     <strong id="following" class="stat">
       <%= @user.followed_users.count %>
-      <%= @user.designation  %>
+       <% if current_user.designation == "1" %>
+	Project Leader
+<% else if current_user.designation == "2" %>
+	Developer
+<% else %>
+	Tester
+<% end %>
+<%end%>
     </strong>
     following
  </a>

@@ -6,7 +6,14 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-	<%= @user.designation %>
+	<% if current_user.designation == "1" %>
+	Project Leader
+	<% else if current_user.designation == "2" %>
+	Developer
+	<% else %>
+	Tester
+	<% end %>
+	<%end%>
     </section>
   </aside>
   <div class="span8">

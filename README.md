@@ -1,4 +1,4 @@
-<h1>WorkDay Scheduler</h1>
+<h1>Workday Scheduler</h1>
 <h3>Work hard, Let us handle the trivial things.</h3>
 <h5>A Cloud based HRM service.</h5>
 * The platform utilizes the hierarchy structure of employees and transforms leave requests of an employee in suitable blocks of overtime and distributes them to the other employees according to their ability to deliver equivalent or near equivalent services as the applicant.

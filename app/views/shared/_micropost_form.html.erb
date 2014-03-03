@@ -8,17 +8,18 @@
 
 
 <% if current_user.leave == 0 %>
-<%= f.submit "Take a Leave", class: "btn btn-primary" , data: { disable_with: 'Processing' } %>
+	<%= f.submit "Take a Leave", class: "btn btn-primary" , data: { disable_with: 'Processing' } %>
+
+<% else if current_user.leave == 2 %>
+	<h5>Overtime Accepted...</h5>
+
+<% else %>
+	<% if current_user.leave == 11 %>
+		<h5>Applied for leave...</h5>
+	<% else %>
+		<h5>You are on leave today...</h5>
+	<% end %>
+
 <% end %>
-
-<% if current_user.leave == 1 %>
-Applied for leave...
 <% end %>
-
-<% if current_user.leave == 2 %>
-Overtime Accepted...
-<% end %>
-
-
-
 <% end %>

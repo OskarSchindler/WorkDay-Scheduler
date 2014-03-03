@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     @user.leave = 0
     @user.workhour = 0
     @user.visible = 0
+    @user.overtime_count = 0
+    @user.idwh = 0
 
     cntr = 0
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302032523) do
+ActiveRecord::Schema.define(version: 20140303012236) do
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20140302032523) do
     t.integer  "leave"
     t.integer  "designation_id"
     t.integer  "visible"
+    t.integer  "overtime_count"
+    t.integer  "idwh"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

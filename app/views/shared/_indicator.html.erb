@@ -1,5 +1,5 @@
 <head>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
+    <script src="spin.min.js"></script>
 </head>
 
 <div id="foo" style="height:150px; width:150px; font-size:25pt; font-weight:bold; text-align:center; display:table-cell;  vertical-align:middle;">
@@ -9,7 +9,7 @@ Hours
 </div>
 </div>
 
-<% if current_user.workhour < 8 %>
+<% if current_user.workhour < current_user.idwh %>
 
 <script>
 var opts = {
@@ -35,7 +35,7 @@ var spinner = new Spinner(opts).spin(target);
 
 </script>
 
-<% else if current_user.workhour > 8 %>
+<% else if current_user.workhour > current_user.idwh %>
 
 <script>
 var opts = {

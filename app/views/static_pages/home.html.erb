@@ -9,7 +9,11 @@
 	<section>
         <%= render 'shared/overtime_form' %>
         </section>
+	<% else if current_user.visible == 2 %>
+	<h5>Overtime not available</h5>
+	<% else %>
       <%end%>
+	<%end%>
 
        <section>
         <%= render 'shared/indicator' %>

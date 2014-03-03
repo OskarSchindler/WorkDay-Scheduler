@@ -5,17 +5,17 @@ class MicropostsController < ApplicationController
   def create
  	@micropost = current_user.microposts.build(micropost_params)
 
-        if @micropost.trigger == 1
+        if @micropost.trigger == 1                     #Leave
 	User.update_all("leave = 11,overtime_count = 2" , :id => current_user )
 
 	temp = Overtime.find(:all,:conditions => ["id =?", current_user.designation_id])
-	Overtime.update_all("ot = ot + 2",:id => temp)
+	Overtime.update_all("ot = ot + 8",:id => temp)    #generate overtime
 
 	temp_user=User.find(:all,:conditions => ["designation = ?", current_user.designation])
 	User.where(:id => temp_user).where("leave == 0").where("overtime_count == 0").update_all("visible = 1")
-	User.update_all("visible = 0",:id => current_user)
+	User.update_all("visible = 0",:id => current_user)  #make other users visible for ot distribution
 
-	else if @micropost.trigger == 0
+	else if @micropost.trigger == 0               #Overtime
 	overtime = Overtime.find_by_sql("Select o.ot, o.id from overtimes o , users u where o.id = u.designation_id limit 1")
 	if overtime.first.ot != 0
 	temp = Overtime.find(:all,:conditions => ["id =?", current_user.designation_id])

@@ -4,36 +4,53 @@ class MicropostsController < ApplicationController
 
   def create
  	@micropost = current_user.microposts.build(micropost_params)
+	
+	check = 0
 
-        if @micropost.trigger == 1                     #Leave
-	User.update_all("leave = 11,overtime_count = 2" , :id => current_user )
+	if @micropost.trigger == 1
+		User.update_all("leave = 11,overtime_count = 2" , :id => current_user )
 
-	temp = Overtime.find(:all,:conditions => ["id =?", current_user.designation_id])
-	Overtime.update_all("ot = ot + 8",:id => temp)    #generate overtime
+		Overtime.update_all("ot = ot + 2",:id => current_user.designation_id)
 
-	temp_user=User.find(:all,:conditions => ["designation = ?", current_user.designation])
-	User.where(:id => temp_user).where("leave == 0").where("overtime_count == 0").update_all("visible = 1")
-	User.update_all("visible = 0",:id => current_user)  #make other users visible for ot distribution
+		temp_user=User.find(:all,:conditions => ["designation = ?", current_user.designation])
+		User.where(:id => temp_user).where("leave == 0").where("overtime_count == 0").update_all("visible = 1")
+		User.update_all("visible = 0",:id => current_user)
 
-	else if @micropost.trigger == 0               #Overtime
-	overtime = Overtime.find_by_sql("Select o.ot, o.id from overtimes o , users u where o.id = u.designation_id limit 1")
-	if overtime.first.ot != 0
-	temp = Overtime.find(:all,:conditions => ["id =?", current_user.designation_id])
-	Overtime.where(:id => temp).update_all("ot = ot - 2")
-	User.update_all("visible = 0,overtime_count = 11",:id => current_user)
+		@micropost.save
+		flash[:success] = "Leave taken!"
+		
 
-	User.update_all("leave = 2" , :id => current_user )
-	else 
-	temp = Overtime.find(:all,:conditions => ["id =?", current_user.designation_id])
-	@micropost.destroy
-	User.update_all("visible = 0",:id => temp)
-	User.update_all("visible = 2", :id => current_user )
+	else
+		if params[:commit] == "Accept"
+	
+			overtime = Overtime.find_by_sql ["SELECT o.ot,o.id FROM overtimes o,users u WHERE o.id = u.designation_id LIMIT 1"]
+
+			if overtime.first.ot != 0
+				Overtime.where(:id => current_user.designation_id).update_all("ot = ot - 2")
+				User.update_all("visible = 0,overtime_count = 1",:id => current_user)
+				User.update_all("leave = 2" , :id => current_user )
+
+				@micropost.save
+				flash[:success] = "Overtime allocated!"
+			else
+				check = 1
+				@micropost.destroy
+
+				flash[:success] = "Overtime not available!"	
+
+				temp_user=User.find(:all,:conditions => ["designation = ?", current_user.designation])
+				User.where(:id => temp_user).update_all("visible = 0")
+				User.update_all("visible = 2", :id => current_user)
+	
+			end
+		else params[:commit] == "Reject"
+			check = 1
+			@micropost.destroy
+			flash[:success] = "Overtime rejected!"
+		
+			User.update_all("visible = 0", :id => current_user)
+		end
 	end
-	else 
-	User.update_all("visible = 0", :id => current_user )
-	end
-	end
-
 	redirect_to root_url
   end
   
